@@ -1,0 +1,17 @@
+{
+  "name": "challenge-warm-up",
+  "version": "1.0.0",
+  "description": "Challenge correspondiente a la Semana 1 de alkemy \"Warm UP\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Preiti Matias <preitimatias@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^6.7.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
