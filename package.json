@@ -10,6 +10,7 @@
   "author": "Preiti Matias <preitimatias@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@hapi/boom": "^9.1.4",
     "express": "^4.17.1",
     "express-slash": "^2.0.1",
     "morgan": "^1.10.0",
