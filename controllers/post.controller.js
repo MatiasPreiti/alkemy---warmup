@@ -63,3 +63,57 @@ async function addPost(req, res) {
     });
   }
 }
+
+// PATCH POST
+async function editPost(req, res) {
+  try {
+    const post = req.body;
+    const { id } = req.params;
+    const { title, image, category, creationDate, text } = req.body;
+
+    const queryResponse = db.query(
+      'UPDATE post WHERE id = ?, SET title = ?, image = ?, category = ?, creationDate = ?, text = ?)',
+      {
+        type: QueryTypes.UPDATE,
+        replacements: [title, image, category, creationDate, text],
+      }
+    );
+    res.status(200).json({
+      success: true,
+      msg: `post ${queryResponse.title} is updated succesfully`,
+      post: queryResponse,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      error: 'Server internal error',
+    });
+  }
+}
+
+// DELETE POST
+async function deletePost(req, res) {
+  try {
+    const { id } = req.params;
+
+    await db.query('DELETE FROM movies WHERE id = ?', {
+      type: QueryTypes.DELETE,
+      replacements: [id],
+    });
+    res.json({
+      success: true,
+      msg: `The post id: ${id} was deleted successfully`,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      error: 'Server internal error',
+    });
+  }
+}
+
+module.exports = { getpost, addPost, editPost, deletePost };

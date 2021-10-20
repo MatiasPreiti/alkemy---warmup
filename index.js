@@ -23,6 +23,6 @@ app.use(slash());
 //port
 const port = parseInt(process.env.PORT) || 8000;
 app.set('port', port);
-app.listen(port, () => console.log('app escuchando en puerto' + port));
+app.listen(port, () => console.log('app escuchando en puerto ' + port));
 
 module.exports = app;
