@@ -3,10 +3,7 @@ const morgan = require('morgan');
 
 const slash = require('express-slash');
 
-const moviesRoutes = require('./router/movies');
-const characterRoutes = require('./router/character');
-const genreRoutes = require('./router/genre');
-const userRoutes = require('./router/users');
+const postRoutes = require('./router/post.router');
 
 // Set up express app
 const app = express();
@@ -19,10 +16,7 @@ const router = express.Router({
   caseSensitive: app.get('case sensitive routing'),
   strict: app.get('strict routing'),
 });
-router.use('/movies', moviesRoutes, () => console.log());
-router.use('/characters', characterRoutes);
-router.use('/genre', genreRoutes);
-router.use('/user', userRoutes);
+router.use('/movies', postRoutes);
 
 app.use(slash());
 
