@@ -1,9 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
-
 const slash = require('express-slash');
 
-const postRoutes = require('./router/post.router');
+const { postRouter } = require('./router/post.router');
 
 const {
   errorHandler,
@@ -19,11 +18,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //router.
-const router = express.Router({
-  caseSensitive: app.get('case sensitive routing'),
-  strict: app.get('strict routing'),
-});
-router.use('/post', postRoutes);
+postRouter(app);
 
 app.use(slash());
 

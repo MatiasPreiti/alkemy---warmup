@@ -3,10 +3,10 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('posts', {
       id: {
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        unique: true,
       },
       title: {
         allowNull: false,
@@ -28,15 +28,15 @@ module.exports = {
       creationDate: {
         allowNull: false,
         defaultValue: Sequelize.NOW,
-        type: Sequelize.DATEONLY,
+        type: Sequelize.STRING,
       },
       createdAt: {
-        allowNull: false,
+        defaultValue: Sequelize.NOW,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
     });
   },

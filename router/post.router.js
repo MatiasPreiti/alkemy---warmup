@@ -1,15 +1,26 @@
+const express = require('express');
+const slash = require('express-slash');
+
 const postController = require('../controllers/post.controller.js');
 
-module.exports = (app) => {
+function postRouter(app) {
+  const router = express.Router();
+
+  app.use('/post', router);
+
+  // añadir
+  app.use(slash());
   // la totalidad de respuestas deben tener solo id title imagen categoria y creacion
   //listado de post por fecha de creacion decendiente
-  app.get('/', postController.getpost);
+  router.get('/', postController.getAllPost);
   // buscar por ID - sino error
-  app.get('/:id', postController.getpost);
+  router.get('/:id', postController.getPostById);
   //guardar nuevo post
-  app.post('/', postController.addPost);
+  router.post('/', postController.addPost);
   //actualizar por por Id - sino error
-  app.patch('/:id', postController.editPost);
+  router.patch('/:id', postController.editPost);
   //elimitar post por ID
-  app.delete('/:id', postController.deletePost);
-};
+  router.delete('/:id', postController.deletePost);
+}
+
+module.exports = { postRouter };

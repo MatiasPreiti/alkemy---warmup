@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
   post.init(
     {
       id: {
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
@@ -39,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       creationDate: {
         allowNull: false,
         defaultValue: sequelize.NOW,
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
       },
     },
     {
