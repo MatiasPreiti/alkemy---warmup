@@ -4,7 +4,7 @@ const category = require('./category');
 module.exports = (sequelize, DataTypes) => {
   class post extends Model {
     static associate(models) {
-      post.belongsTo(category, {
+      post.belongsTo(models.category, {
         foreignKey: 'fk_category',
         targetKey: 'title',
       });
@@ -27,10 +27,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       image: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      category: {
         allowNull: false,
         type: DataTypes.STRING,
       },

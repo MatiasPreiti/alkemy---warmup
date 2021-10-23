@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const slash = require('express-slash');
 
 const { postRouter } = require('./router/post.router');
+const { categoryRouter } = require('./router/category.router');
 
 const {
   errorHandler,
@@ -16,11 +17,12 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(slash());
 
 //router.
 postRouter(app);
-
-app.use(slash());
+categoryRouter(app);
 
 // Catch error 404
 app.use(notFoundHandler);
@@ -33,6 +35,6 @@ app.use(errorHandler);
 //port implementation
 const port = parseInt(process.env.PORT) || 8000;
 app.set('port', port);
-app.listen(port, () => console.log('app escuchando en puerto ' + port));
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 module.exports = app;

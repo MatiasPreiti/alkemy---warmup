@@ -8,7 +8,6 @@ function postRouter(app) {
 
   app.use('/post', router);
 
-  // añadir
   app.use(slash());
   // la totalidad de respuestas deben tener solo id title imagen categoria y creacion
   //listado de post por fecha de creacion decendiente
