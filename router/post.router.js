@@ -9,16 +9,16 @@ function postRouter(app) {
   app.use('/post', router);
 
   app.use(slash());
-  // la totalidad de respuestas deben tener solo id title imagen categoria y creacion
-  //listado de post por fecha de creacion decendiente
+
+  //List Post
   router.get('/', postController.getAllPost);
-  // buscar por ID - sino error
+  // Search Post by ID
   router.get('/:id', postController.getPostById);
-  //guardar nuevo post
+  //Add post
   router.post('/', postController.addPost);
-  //actualizar por por Id - sino error
+  //Update post
   router.patch('/:id', postController.editPost);
-  //elimitar post por ID
+  //Delete post
   router.delete('/:id', postController.deletePost);
 }
 

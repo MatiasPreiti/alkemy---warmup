@@ -6,6 +6,7 @@ const { postRouter } = require('./router/post.router');
 const { categoryRouter } = require('./router/category.router');
 const { sequelize } = require('./models/index');
 
+// Error handlers
 const {
   errorHandler,
   wrapErrors,
