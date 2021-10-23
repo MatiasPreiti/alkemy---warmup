@@ -4,6 +4,7 @@ const slash = require('express-slash');
 
 const { postRouter } = require('./router/post.router');
 const { categoryRouter } = require('./router/category.router');
+const { sequelize } = require('./models/index');
 
 const {
   errorHandler,
@@ -17,13 +18,12 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(slash());
 
 //router.
 postRouter(app);
 categoryRouter(app);
 
+app.use(slash());
 // Catch error 404
 app.use(notFoundHandler);
 
@@ -35,6 +35,11 @@ app.use(errorHandler);
 //port implementation
 const port = parseInt(process.env.PORT) || 8000;
 app.set('port', port);
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+  sequelize.sync({ force: true }).then(() => {
+    console.log('Database is connected');
+  });
+});
 
 module.exports = app;

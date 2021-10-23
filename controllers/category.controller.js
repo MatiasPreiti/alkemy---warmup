@@ -14,12 +14,12 @@ async function listCategory(req, res) {
 // GET CATEGORY BY ID
 async function getCategoryById(req, res) {
   try {
-    const category = await categoryModel.findOne({
+    const categoryFind = await categoryModel.findOne({
       where: {
         id: req.params.id,
       },
     });
-    res.send(category);
+    res.send(categoryFind);
   } catch (error) {
     console.error(error);
     res.status(400).send(error);
@@ -48,7 +48,7 @@ async function deleteCategory(req, res) {
         id: req.params.id,
       },
     });
-    res.send(category);
+    res.send('category is deleted succefully');
   } catch (error) {
     console.error(error);
     res.status(400).send(error);

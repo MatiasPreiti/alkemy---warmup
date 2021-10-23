@@ -1,5 +1,4 @@
 const express = require('express');
-const slash = require('express-slash');
 
 const categoryController = require('../controllers/category.controller.js');
 
@@ -8,14 +7,13 @@ function categoryRouter(app) {
 
   app.use('/category', router);
 
-  // añadir
-  app.use(slash());
+  // list all categories
   router.get('/', categoryController.listCategory);
-  // buscar por ID - sino error
+  // buscar por ID -
   router.get('/:id', categoryController.getCategoryById);
-  //guardar nuevo post
+  //guardar nueva category
   router.post('/', categoryController.createCategory);
-  //elimitar post por ID
+  //eliminar categoria por ID
   router.delete('/:id', categoryController.deleteCategory);
 }
 

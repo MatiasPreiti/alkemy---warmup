@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
   class category extends Model {
     static associate(models) {
       category.hasMany(models.post, {
-        foreignKey: 'fk_post',
+        foreignKey: 'categoryId',
+        as: 'post',
       });
     }
   }
@@ -15,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      title: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
     },
     {
       sequelize,

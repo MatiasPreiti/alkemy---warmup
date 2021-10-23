@@ -1,12 +1,11 @@
 'use strict';
 const { Model } = require('sequelize');
-const category = require('./category');
 module.exports = (sequelize, DataTypes) => {
   class post extends Model {
     static associate(models) {
       post.belongsTo(models.category, {
-        foreignKey: 'fk_category',
-        targetKey: 'title',
+        foreignKey: 'categoryId',
+        targetKey: 'id',
       });
     }
   }
