@@ -1,4 +1,5 @@
 const postModel = require('../models').post;
+const isImageURL = require('image-url-validator').default;
 
 // GET ALL POST
 async function getAllPost(req, res) {
@@ -33,26 +34,33 @@ async function getPostById(req, res) {
 
 // CREATE POST
 async function addPost(req, res) {
-  try {
-    const data = req.body;
-    const createdModel = await postModel.create({
-      title: data.title,
-      text: data.text,
-      image: data.image,
-      category: data.category,
-      creationDate: data.creationDate,
-    });
-    res.status(200).json({
-      success: true,
-      msg: `your post ${createdModel.title} has been created`,
-      postModel: postModel,
-    });
-    return createdModel;
-  } catch (err) {
-    res.status(500).json({
+  let isImage = await isImageURL(req.body.image);
+  if (!isImage) {
+    res.status(400).json({
       success: false,
-      error: 'Server internal error',
+      error: 'the image is not valid',
     });
+  } else {
+    try {
+      const newPost = await postModel.create({
+        title: req.body.title,
+        text: req.body.text,
+        image: req.body.image,
+        category: req.body.category,
+        creationDate: req.body.creationDate,
+      });
+      res.status(200).json({
+        success: true,
+        msg: `your post ${newPost.title} has been created`,
+        post: newPost,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        success: false,
+        error: 'the post cannot be created',
+      });
+    }
   }
 }
 
