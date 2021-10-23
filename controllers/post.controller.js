@@ -78,9 +78,10 @@ async function editPost(req, res) {
     });
     res.send(`your post ${req.body.title} has been updated`);
   } catch (err) {
+    console.error(err);
     res.status(500).json({
       success: false,
-      error: 'the update cannot be completed ',
+      error: 'the update cannot be completed',
     });
   }
 }
@@ -100,10 +101,9 @@ async function deletePost(req, res) {
     });
   } catch (err) {
     console.error(err);
-
     res.status(500).json({
       success: false,
-      error: 'Server internal error',
+      error: 'Delete NotFound',
     });
   }
 }
