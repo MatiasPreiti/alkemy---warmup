@@ -13,6 +13,7 @@
     "@hapi/boom": "^9.1.4",
     "express": "^4.17.1",
     "express-slash": "^2.0.1",
+    "image-url-validator": "^1.0.4",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.2",
     "nodemon": "^2.0.14",
