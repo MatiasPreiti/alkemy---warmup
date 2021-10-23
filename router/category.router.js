@@ -9,11 +9,11 @@ function categoryRouter(app) {
 
   // list all categories
   router.get('/', categoryController.listCategory);
-  // buscar por ID -
+  // Search category by ID
   router.get('/:id', categoryController.getCategoryById);
-  //guardar nueva category
+  //Add Category
   router.post('/', categoryController.createCategory);
-  //eliminar categoria por ID
+  //Delete Category
   router.delete('/:id', categoryController.deleteCategory);
 }
 
